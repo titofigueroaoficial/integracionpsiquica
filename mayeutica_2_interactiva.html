@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayéutica 2 — El Circuito de Alimentación Psíquica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600&display=swap');
+
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --primary: #1e293b;
+            --secondary: #475569;
+            --accent: #0284c7;
+            --accent-hover: #0369a1;
+            --border: #e2e8f0;
+            --highlight-bg: #f0f9ff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .intro {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            font-size: 0.95rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .question-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .main-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .options-group {
+            margin-bottom: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-label:hover {
+            background: var(--border);
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: var(--accent);
+        }
+
+        .sub-questions {
+            display: none;
+            background: var(--highlight-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .sub-questions.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sub-questions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .sub-questions li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--secondary);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            box-sizing: border-box;
+            background: #fdfdfd;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .btn-print {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .btn-print:hover {
+            background: var(--accent-hover);
+        }
+
+        .declaration-box {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        
+        .declaration-box h2 {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+
+        .declaration-text {
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; }
+            .btn-print { display: none; }
+            .question-card { break-inside: avoid; border: 1px solid #ccc; margin-bottom: 20px; padding: 15px; }
+            .sub-questions { display: block !important; border-left: 2px solid #000; background: none; }
+            .option-label { display: none; } /* Hide radio options on print, assume sub-questions are expanded based on JS state, actually print handles inputs weirdly, best to let user print what they see */
+            textarea { border: 1px solid #ccc; height: auto; }
+            .declaration-box { background: white; color: black; border: 2px solid black; }
+            .declaration-box h2 { color: black; border-bottom-color: black; }
+            .declaration-text { color: black; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="subtitle">Certificación en Mentoring Ontológico de Integración Psíquica</div>
+        <h1>MAYÉUTICA 2<br>El Circuito de Alimentación Psíquica</h1>
+    </header>
+
+    <div class="intro">
+        <p><strong>Antes de comenzar</strong></p>
+        <p>En el primer módulo investigaste un comportamiento que se repetía a pesar de contradecir alguna de tus intenciones. Ahora vamos a examinar algo diferente.</p>
+        <p>¿Qué ocurre cuando ese comportamiento recibe continuamente estímulos, recompensas y refuerzos procedentes de tu entorno? ¿Y cuando tú mismo contribuyes a mantener determinadas situaciones que después terminan afectándote?</p>
+        <p>En las lecciones anteriores hemos utilizado las figuras de los arcontes, las entidades parasitarias y los egregores como recursos para estudiar estas relaciones. En esta mayéutica no necesitas asumir que existen entidades energéticas independientes. Trabajaremos con aquello que puedes reconocer en tu experiencia: pensamientos, emociones, relaciones, influencias colectivas, hábitos y conductas.</p>
+        <p><strong>La pregunta que guiará nuestra investigación será:</strong><br>
+        <em>¿Qué estoy contribuyendo a mantener mediante aquello a lo que entrego repetidamente mi atención y mi conducta?</em></p>
+        <p><small>Selecciona un patrón concreto. Cada pregunta presenta tres posibles escenarios. Selecciona el que mejor se adapte a ti para desplegar las preguntas correspondientes.</small></p>
+    </div>
+
+    <!-- PREGUNTA 1 -->
+    <div class="question-card">
+        <h2>PREGUNTA 1 — EL TERRITORIO QUE ALIMENTO</h2>
+        <div class="main-question">¿A qué situación, pensamiento, actividad o relación estás entregando repetidamente recursos que preferirías dedicar a algo diferente?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q1" value="1" onchange="toggleSub('q1', '1')">
+                A mis pensamientos, preocupaciones o recuerdos
+            </label>
+            <div id="q1-1" class="sub-questions">
+                <ol>
+                    <li>¿Cuál es el contenido que regresa con mayor frecuencia y en qué circunstancias aparece?</li>
+                    <li>¿Qué haces habitualmente cuando aparece: lo analizas, lo repites, intentas combatirlo o buscas distraerte?</li>
+                    <li>¿Qué actividades importantes quedan desplazadas mientras mantienes tu atención allí?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q1" value="2" onchange="toggleSub('q1', '2')">
+                A las redes sociales, videojuegos, entretenimiento o recompensas inmediatas
+            </label>
+            <div id="q1-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué buscas normalmente cuando comienzas esa actividad?</li>
+                    <li>¿Qué consigue que permanezcas más tiempo del que habías decidido?</li>
+                    <li>¿Qué mecanismos externos —notificaciones, recomendaciones, mensajes, ofertas— favorecen que regreses?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q1" value="3" onchange="toggleSub('q1', '3')">
+                A determinadas personas, relaciones o grupos
+            </label>
+            <div id="q1-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué necesidad satisface para ti mantener esa relación o pertenencia?</li>
+                    <li>¿Qué esperas recibir cuando entregas tu atención, disponibilidad o esfuerzo?</li>
+                    <li>¿Qué consecuencias experimentas cuando esa relación comienza a ocupar demasiado espacio en tu vida?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta y primer descubrimiento..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div class="question-card">
+        <h2>PREGUNTA 2 — EL ALIMENTO DEL PATRÓN</h2>
+        <div class="main-question">Si esa dinámica se mantuviera gracias a algo que tú aportas, ¿qué estarías aportando exactamente?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q2" value="1" onchange="toggleSub('q2', '1')">
+                Mi atención y mi tiempo
+            </label>
+            <div id="q2-1" class="sub-questions">
+                <ol>
+                    <li>¿Cuánto tiempo ocupa realmente y cuánto habías decidido dedicarle?</li>
+                    <li>¿Qué ocurre cuando intentas retirar voluntariamente tu atención?</li>
+                    <li>¿Qué otra actividad importante podría beneficiarse de recuperar parte de ese tiempo?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q2" value="2" onchange="toggleSub('q2', '2')">
+                Mis emociones
+            </label>
+            <div id="q2-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué estados emocionales aparecen con mayor frecuencia durante esa situación?</li>
+                    <li>¿Qué haces cuando aparecen esas emociones y de qué manera tu respuesta puede favorecer que la situación se repita?</li>
+                    <li>¿Esas emociones te ayudan a comprender o resolver algo, o terminas regresando al mismo punto?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q2" value="3" onchange="toggleSub('q2', '3')">
+                Mi dinero, mis esfuerzos o mi disponibilidad
+            </label>
+            <div id="q2-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué recibes a cambio de esos recursos?</li>
+                    <li>¿Qué parte de ese intercambio continúa siendo voluntaria y qué parte parece haberse convertido en una obligación?</li>
+                    <li>¿Qué ocurriría si establecieras un límite razonable sin abandonar necesariamente la relación o actividad?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 3 -->
+    <div class="question-card">
+        <h2>PREGUNTA 3 — LA PROMESA QUE ME MANTIENE VINCULADO</h2>
+        <div class="main-question">¿Qué te proporciona esa dinámica que hace que continúes participando, incluso cuando reconoces algunas consecuencias perjudiciales?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q3" value="1" onchange="toggleSub('q3', '1')">
+                Placer, diversión o estimulación
+            </label>
+            <div id="q3-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué tiene de particular esa recompensa frente a otras actividades que también disfrutas?</li>
+                    <li>¿Cómo cambia tu motivación cuando la recompensa deja de estar disponible?</li>
+                    <li>¿Qué alternativas podrían satisfacer esa necesidad sin desplazar tus prioridades?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q3" value="2" onchange="toggleSub('q3', '2')">
+                Alivio, tranquilidad o desconexión
+            </label>
+            <div id="q3-2" class="sub-questions">
+                <ol>
+                    <li>¿De qué experiencia estás intentando aliviarte?</li>
+                    <li>¿El alivio resuelve algo o solamente modifica temporalmente cómo te sientes?</li>
+                    <li>¿Qué podrías necesitar aprender para afrontar esa situación de una forma menos dependiente de la conducta habitual?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q3" value="3" onchange="toggleSub('q3', '3')">
+                Pertenencia, reconocimiento o sentirme acompañado
+            </label>
+            <div id="q3-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué significa para ti ser aceptado por esas personas?</li>
+                    <li>¿Qué comportamientos tuyos parecen recibir mayor aprobación?</li>
+                    <li>¿Puedes conservar ese vínculo expresando diferencias o estableciendo límites?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 4 -->
+    <div class="question-card">
+        <h2>PREGUNTA 4 — EL CIRCUITO DE RETROALIMENTACIÓN</h2>
+        <div class="main-question">¿De qué manera tu propia respuesta podría estar contribuyendo a que vuelva a ocurrir aquello que después te incomoda?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q4" value="1" onchange="toggleSub('q4', '1')">
+                Cuanto más me preocupo, más termino pensando en lo mismo
+            </label>
+            <div id="q4-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué haces concretamente cuando comienzas a preocuparte?</li>
+                    <li>¿Esa actividad produce una decisión o información nueva, o prolonga el mismo pensamiento?</li>
+                    <li>¿En qué momento podrías distinguir entre analizar un problema y continuar repitiéndolo?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q4" value="2" onchange="toggleSub('q4', '2')">
+                Cuando discuto, critico o me quejo, los demás reaccionan y todo empeora
+            </label>
+            <div id="q4-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué esperas conseguir mediante esa respuesta?</li>
+                    <li>¿Qué suelen hacer los demás después y cómo reaccionas tú?</li>
+                    <li>¿Qué sucedería si interrumpieras una parte de esa secuencia, aunque los demás no modificaran inmediatamente su comportamiento?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q4" value="3" onchange="toggleSub('q4', '3')">
+                Cuando cedo, los demás esperan que vuelva a hacerlo
+            </label>
+            <div id="q4-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué intentas evitar al ceder?</li>
+                    <li>¿Qué ha aprendido la otra persona acerca de tu disponibilidad?</li>
+                    <li>¿Qué límite pequeño y razonable podrías establecer para comprobar si la relación puede organizarse de otra manera?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 5 -->
+    <div class="question-card">
+        <h2>PREGUNTA 5 — EL EGREGOR COMO REPRESENTACIÓN COLECTIVA</h2>
+        <div class="main-question">¿Existe algún grupo, comunidad o relación donde determinadas emociones, creencias o comportamientos se refuercen mutuamente?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q5" value="1" onchange="toggleSub('q5', '1')">
+                Sí, compartimos continuamente críticas, indignación o preocupaciones
+            </label>
+            <div id="q5-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué ocurre cuando alguien introduce una interpretación diferente o una noticia positiva?</li>
+                    <li>¿Las conversaciones ayudan a resolver problemas o terminan reproduciendo el mismo malestar?</li>
+                    <li>¿Qué obtiene cada integrante al participar reiteradamente en esa dinámica?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q5" value="2" onchange="toggleSub('q5', '2')">
+                Sí, existe mucha presión para pensar o actuar como los demás
+            </label>
+            <div id="q5-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué comportamientos son premiados mediante aprobación, reconocimiento o pertenencia?</li>
+                    <li>¿Qué sucede cuando alguien expresa una duda o decide actuar de otra manera?</li>
+                    <li>¿En qué aspectos has modificado tus decisiones para evitar perder la aceptación del grupo?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q5" value="3" onchange="toggleSub('q5', '3')">
+                Pertenezco a comunidades, pero no siento ese problema
+            </label>
+            <div id="q5-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué beneficios reales recibes de esas comunidades?</li>
+                    <li>¿Puedes cuestionar una idea sin temor a perder tu lugar?</li>
+                    <li>¿Qué características permiten que el grupo fortalezca tu autonomía en lugar de limitarla?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 6 -->
+    <div class="question-card">
+        <h2>PREGUNTA 6 — LA IDENTIDAD CONSTRUIDA</h2>
+        <div class="main-question">¿Qué aspectos de tu manera de pensar, sentir o actuar has terminado considerando parte de tu identidad porque se repiten dentro de tu entorno?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q6" value="1" onchange="toggleSub('q6', '1')">
+                En mi familia siempre hemos sido así
+            </label>
+            <div id="q6-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué conductas aprendiste observando a las personas importantes de tu infancia?</li>
+                    <li>¿Cuáles continúan siendo útiles y cuáles producen dificultades actualmente?</li>
+                    <li>¿Qué comportamiento diferente has conseguido desarrollar en algún momento de tu vida?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q6" value="2" onchange="toggleSub('q6', '2')">
+                En mi comunidad o profesión todos pensamos de determinada manera
+            </label>
+            <div id="q6-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué ideas has examinado personalmente y cuáles adoptaste principalmente por confianza en el grupo?</li>
+                    <li>¿Qué ocurre cuando encuentras información que contradice una creencia compartida?</li>
+                    <li>¿Podrías conservar tu pertenencia sin adoptar necesariamente todas las conclusiones colectivas?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q6" value="3" onchange="toggleSub('q6', '3')">
+                Mi forma de ser es completamente independiente de los demás
+            </label>
+            <div id="q6-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué personas o experiencias influyeron en tus valores y preferencias actuales?</li>
+                    <li>¿Recuerdas alguna opinión importante que hayas modificado después de convivir con determinado grupo?</li>
+                    <li>¿Cómo distinguirías una decisión independiente de una influencia social que simplemente no has reconocido?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 7 -->
+    <div class="question-card">
+        <h2>PREGUNTA 7 — EL PRECIO DE LA CONTINUIDAD</h2>
+        <div class="main-question">¿Qué estás sacrificando para mantener una dinámica que quizás ya no responde suficientemente a tus necesidades actuales?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q7" value="1" onchange="toggleSub('q7', '1')">
+                Estoy perdiendo tiempo u oportunidades
+            </label>
+            <div id="q7-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué oportunidades concretas han quedado postergadas?</li>
+                    <li>¿Qué beneficio inmediato hace que ese coste parezca aceptable?</li>
+                    <li>¿Qué cambiaría si recuperaras solamente una parte de los recursos que hoy dedicas a esa dinámica?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q7" value="2" onchange="toggleSub('q7', '2')">
+                Estoy perdiendo tranquilidad o autonomía
+            </label>
+            <div id="q7-2" class="sub-questions">
+                <ol>
+                    <li>¿En qué momentos notas más claramente esa pérdida?</li>
+                    <li>¿Qué decisiones has comenzado a tomar para evitar determinadas reacciones de otras personas?</li>
+                    <li>¿Qué podrías recuperar sin necesidad de provocar una ruptura o confrontación innecesaria?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q7" value="3" onchange="toggleSub('q7', '3')">
+                No considero que esté sacrificando nada importante
+            </label>
+            <div id="q7-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué beneficios concretos hacen que desees conservar esa actividad o vínculo?</li>
+                    <li>¿Qué límites ya existen y te permiten mantener una participación saludable?</li>
+                    <li>¿Qué señales indicarían que el equilibrio comienza a cambiar?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 8 -->
+    <div class="question-card">
+        <h2>PREGUNTA 8 — EL MOMENTO EN QUE RETIRO MI CONTRIBUCIÓN</h2>
+        <div class="main-question">¿Qué ocurre cuando decides dejar de alimentar temporalmente ese circuito con tu atención o tu conducta?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q8" value="1" onchange="toggleSub('q8', '1')">
+                Siento inquietud, aburrimiento o ganas de regresar
+            </label>
+            <div id="q8-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué sensaciones aparecen primero y cuánto duran aproximadamente?</li>
+                    <li>¿Qué interpretación haces de esa incomodidad?</li>
+                    <li>¿Has logrado mantener tu decisión durante un intervalo breve? ¿Qué ocurrió realmente?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q8" value="2" onchange="toggleSub('q8', '2')">
+                Siento culpa o miedo a decepcionar a otros
+            </label>
+            <div id="q8-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué esperas que ocurra si mantienes tu decisión?</li>
+                    <li>¿Qué evidencias tienes de que esa consecuencia sucederá?</li>
+                    <li>¿Cómo podrías comunicar un límite respetuoso sin atacar ni descalificar a nadie?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q8" value="3" onchange="toggleSub('q8', '3')">
+                Me siento mejor y recupero claridad
+            </label>
+            <div id="q8-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué cambia en tu atención, tu estado emocional o tu conducta?</li>
+                    <li>¿Qué actividades comienzan a recuperar espacio en tu vida?</li>
+                    <li>¿Qué te impide mantener con mayor frecuencia las condiciones que favorecen ese bienestar?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 9 -->
+    <div class="question-card">
+        <h2>PREGUNTA 9 — LO QUE QUIERO CONSERVAR Y TRANSFORMAR</h2>
+        <div class="main-question">Si pudieras reorganizar esa dinámica sin destruir todo lo valioso que contiene, ¿qué conservarías y qué modificarías?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q9" value="1" onchange="toggleSub('q9', '1')">
+                Quiero conservar el vínculo, pero cambiar cómo participo
+            </label>
+            <div id="q9-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué aspecto de esa relación resulta verdaderamente importante para ti?</li>
+                    <li>¿Qué conducta tuya está contribuyendo a mantener el problema?</li>
+                    <li>¿Qué cambio pequeño permitiría comprobar si puede existir una relación diferente?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q9" value="2" onchange="toggleSub('q9', '2')">
+                Necesito alejarme porque la situación me perjudica
+            </label>
+            <div id="q9-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué hechos concretos te llevan a esa conclusión?</li>
+                    <li>¿Qué apoyos o recursos necesitarías para tomar una decisión segura y deliberada?</li>
+                    <li>¿Cómo distinguirías una elección reflexionada de una reacción impulsiva ante una situación dolorosa?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q9" value="3" onchange="toggleSub('q9', '3')">
+                Quiero transformar mi respuesta sin cambiar necesariamente el entorno
+            </label>
+            <div id="q9-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué parte de la situación depende realmente de ti?</li>
+                    <li>¿Qué comportamiento alternativo podrías practicar?</li>
+                    <li>¿Cómo evaluarías si tu nueva respuesta mejora tu autonomía sin perjudicar innecesariamente otras áreas de tu vida?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- PREGUNTA 10 -->
+    <div class="question-card">
+        <h2>PREGUNTA 10 — LA RECUPERACIÓN DE SOBERANÍA</h2>
+        <div class="main-question">¿Qué harías diferente durante los próximos siete días para comprobar que puedes participar en tu entorno sin seguir alimentando automáticamente el mismo patrón?</div>
+        
+        <div class="options-group">
+            <label class="option-label">
+                <input type="radio" name="q10" value="1" onchange="toggleSub('q10', '1')">
+                Voy a prestar menos atención a aquello que me absorbe
+            </label>
+            <div id="q10-1" class="sub-questions">
+                <ol>
+                    <li>¿Qué estímulo concreto reducirás y en qué circunstancias?</li>
+                    <li>¿Qué harás cuando aparezca la urgencia de regresar a él?</li>
+                    <li>¿A qué actividad deliberada destinarás el tiempo recuperado?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q10" value="2" onchange="toggleSub('q10', '2')">
+                Voy a establecer límites en una relación o comunidad
+            </label>
+            <div id="q10-2" class="sub-questions">
+                <ol>
+                    <li>¿Qué límite específico deseas establecer?</li>
+                    <li>¿Cómo lo expresarás sin necesidad de acusar a los demás de controlar tu vida?</li>
+                    <li>¿Qué harás si aparece culpa, presión o incomodidad después de establecerlo?</li>
+                </ol>
+            </div>
+
+            <label class="option-label">
+                <input type="radio" name="q10" value="3" onchange="toggleSub('q10', '3')">
+                Voy a dejar de reforzar una emoción o conversación repetitiva
+            </label>
+            <div id="q10-3" class="sub-questions">
+                <ol>
+                    <li>¿Qué señal te permitirá reconocer que la conversación está entrando en el circuito habitual?</li>
+                    <li>¿Qué respuesta alternativa puedes ofrecer sin invalidar las emociones de nadie?</li>
+                    <li>¿Cómo comprobarás si la nueva respuesta facilita mayor claridad o una solución concreta?</li>
+                </ol>
+            </div>
+        </div>
+        <textarea placeholder="Mi respuesta..."></textarea>
+    </div>
+
+    <!-- DESCUBRIMIENTO CENTRAL -->
+    <div class="question-card">
+        <h2>EL DESCUBRIMIENTO CENTRAL</h2>
+        <p>Ahora reúne tus respuestas y completa esta investigación.</p>
+        
+        <div class="form-group">
+            <label>La dinámica que he identificado es:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>Yo contribuyo a mantenerla cuando:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>La recompensa que obtengo es:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>Lo que termino sacrificando es:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>El entorno favorece su repetición mediante:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>Lo que deseo conservar de esta experiencia es:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>Lo que necesito modificar es:</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label>La primera respuesta diferente que practicaré será:</label>
+            <input type="text" placeholder="...">
+        </div>
+    </div>
+
+    <!-- PREGUNTA FINAL -->
+    <div class="question-card">
+        <h2>UNA PREGUNTA FINAL</h2>
+        <p>Si esa dinámica dejara de recibir tu participación habitual, ¿qué parte de ella seguiría existiendo y qué parte podría comenzar a cambiar?</p>
+        <p><small>No necesitas concluir que existe una entidad independiente detrás de lo que has descubierto. En nuestra metodología podemos llamar egregor a una representación de ciertas dinámicas colectivas, siempre que recordemos que la existencia energética autónoma pertenece al terreno de las hipótesis no demostradas. Lo que sí podemos investigar es cómo los grupos, las relaciones, los hábitos y las recompensas se refuerzan entre sí.</small></p>
+        <textarea placeholder="Mi conclusión final..."></textarea>
+    </div>
+
+    <!-- DECLARACIÓN -->
+    <div class="declaration-box">
+        <h2>MI DECLARACIÓN</h2>
+        <div class="declaration-text">
+            «He comenzado a reconocer que algunas dinámicas de mi vida se mantienen también mediante mi participación.<br><br>
+            No todo lo que me influye procede de una elección consciente, pero tampoco todo lo que ocurre en mi entorno está bajo mi control.<br><br>
+            Voy a examinar qué recursos entrego, qué obtengo, qué consecuencias experimento y cómo puedo participar de una manera más deliberada.<br><br>
+            Mi propósito es desarrollar mayor libertad de respuesta sin negar mis necesidades legítimas de pertenencia, afecto, descanso y reconocimiento».
+        </div>
+        
+        <div class="form-group">
+            <label style="color: white;">Mi declaración personal:</label>
+            <textarea style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3);" placeholder="Escribe aquí..."></textarea>
+        </div>
+        
+        <div style="display: flex; gap: 20px; margin-top: 20px;">
+            <div class="form-group" style="flex: 1;">
+                <label style="color: white;">Firma:</label>
+                <input type="text" style="background: rgba(255,255,255,0.9);">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label style="color: white;">Fecha:</label>
+                <input type="date" style="background: rgba(255,255,255,0.9);">
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-print" onclick="window.print()">Guardar Respuestas como PDF / Imprimir</button>
+    <p style="text-align: center; color: var(--secondary); font-size: 0.85rem; margin-top: 15px;">Conserva tus respuestas. Las utilizaremos en los dos protocolos de este módulo.</p>
+</div>
+
+<script>
+    function toggleSub(questionName, optionValue) {
+        // Ocultar todas las sub-preguntas de esta sección
+        const allSubQuestions = document.querySelectorAll(`[id^="${questionName}-"]`);
+        allSubQuestions.forEach(el => el.classList.remove('active'));
+        
+        // Mostrar solo la seleccionada
+        const selectedEl = document.getElementById(`${questionName}-${optionValue}`);
+        if(selectedEl) {
+            selectedEl.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
